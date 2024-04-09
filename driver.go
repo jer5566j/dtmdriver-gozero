@@ -6,14 +6,12 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/nacos-group/nacos-sdk-go/common/constant"
-	"github.com/zeromicro/zero-contrib/zrpc/registry/nacos"
-
-	"github.com/zeromicro/zero-contrib/zrpc/registry/consul"
-
 	"github.com/dtm-labs/dtmdriver"
+	"github.com/nacos-group/nacos-sdk-go/v2/common/constant"
 	"github.com/zeromicro/go-zero/core/discov"
 	"github.com/zeromicro/go-zero/zrpc/resolver"
+	"github.com/zeromicro/zero-contrib/zrpc/registry/consul"
+	"github.com/zeromicro/zero-contrib/zrpc/registry/nacos"
 )
 
 const (
@@ -117,7 +115,7 @@ func (z *zeroDriver) ParseServerMethod(uri string) (server string, method string
 		return uri[:sep], uri[sep:], nil
 
 	}
-	//resolve gozero consul wait=xx url.Parse no standard
+	// resolve gozero consul wait=xx url.Parse no standard
 	if (strings.Contains(uri, kindConsul) || strings.Contains(uri, kindNacos)) && strings.Contains(uri, "?") {
 		tmp := strings.Split(uri, "?")
 		sep := strings.IndexByte(tmp[1], '/')
